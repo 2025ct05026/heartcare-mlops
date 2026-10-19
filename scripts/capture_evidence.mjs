@@ -5,7 +5,10 @@ import assert from 'node:assert/strict';
 
 await mkdir('screenshots', { recursive: true });
 const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1200, height: 850 }, deviceScaleFactor: 1 });
+const page = await browser.newPage({
+  viewport: { width: 1200, height: 850 }, deviceScaleFactor: 1,
+  locale: 'en-US', timezoneId: 'UTC'
+});
 const browserErrors = [];
 page.on('pageerror', error => browserErrors.push(String(error)));
 page.on('console', message => { if (message.type() === 'error') browserErrors.push(message.text()); });
