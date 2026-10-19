@@ -2,6 +2,7 @@
 
 import json
 import time
+from http.client import HTTPException
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -18,7 +19,7 @@ def wait_until(check):
         try:
             if check():
                 return
-        except (HTTPError, URLError, TimeoutError, KeyError):
+        except (HTTPError, URLError, OSError, HTTPException, KeyError):
             pass
         time.sleep(2)
     raise AssertionError("Service did not become ready")

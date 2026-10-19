@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 
 await mkdir('screenshots', { recursive: true });
 const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 1200, height: 850 }, deviceScaleFactor: 1 });
 try {
-  const page = await browser.newPage({ viewport: { width: 1200, height: 850 }, deviceScaleFactor: 1 });
   const base = process.env.API_URL;
   assert(base);
   await page.goto(`${base}/docs`);
@@ -23,7 +23,7 @@ try {
   await page.screenshot({ path: 'screenshots/ingress-prediction.png' });
 
   await page.goto('http://127.0.0.1:9090/targets');
-  await page.getByText('UP', { exact: true }).first().waitFor({ timeout: 30000 });
+  await page.getByText(/^up$/i).first().waitFor({ timeout: 30000 });
   await page.screenshot({ path: 'screenshots/prometheus.png' });
 
   await page.goto('http://127.0.0.1:3000/d/heartcare-service/heartcare-service-monitoring?orgId=1&from=now-10m&to=now');
@@ -39,6 +39,10 @@ try {
     run_id: process.env.GITHUB_RUN_ID, ingress_url: base, ingress_response: result,
     screenshots: ['ingress-prediction.png', 'prometheus.png', 'grafana.png', 'github-actions.png']
   }, null, 2));
+} catch (error) {
+  await page.screenshot({ path: 'screenshots/browser-failure.png', fullPage: true });
+  await writeFile('evidence/browser-failure.txt', `${page.url()}\n${error}\n${await page.locator('body').innerText()}`);
+  throw error;
 } finally {
   await browser.close();
 }
