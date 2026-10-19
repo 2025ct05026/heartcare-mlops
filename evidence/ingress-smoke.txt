@@ -1,0 +1,7 @@
+{
+  "prediction": 0,
+  "probability": 0.16553481726241553,
+  "confidence": 0.8344651827375844,
+  "model_version": "81f450abefeb"
+}
+PASS: health, prediction, invalid input and metrics

@@ -1,22 +1,21 @@
 # Finish and submit
 
-The DOCX and runnable code are prepared. The following account-specific evidence
-must be produced by running this project in your environment.
+Completed and included:
 
-- [ ] Read the code and explain each component without relying on the report.
-- [ ] Follow README setup, EDA, training and test commands.
-- [ ] Review the measured results and compare your fresh run if versions differ.
-- [x] Publish the files to https://github.com/2025ct05026/heartcare-mlops and include the report URL.
-- [x] Pass GitHub Actions, including all 19 tests, Docker build and container HTTP smoke.
-- [ ] Capture the successful workflow summary and download its test artifacts.
-- [ ] Build and run the Docker image; capture smoke output and health status.
-- [ ] Deploy two API replicas in Minikube and capture pods, ingress and prediction.
-- [ ] Start monitoring Compose stack; capture Prometheus UP and Grafana traffic panels.
-- [ ] Replace report page 8 and page 9 evidence instructions with your screenshots.
-- [ ] Keep report at exactly ten pages and verify name and student ID.
-- [ ] Submit DOCX plus the repository URL according to the course portal.
+- [x] Public repository and report URL.
+- [x] Six tracked experiments, saved pipeline and 19 passing tests.
+- [x] Successful GitHub CI, Docker build and container HTTP smoke.
+- [x] Temporary Minikube deployment: two ready replicas and ingress prediction.
+- [x] Prometheus target UP, Grafana panels and actual browser screenshots.
+- [x] Ten-page DOCX with Lokesh Verma and the supplied student ID.
 
-Screenshots belong under screenshots/ using the filenames in screenshots/README.md.
-No public API URL is required for the local Kubernetes route; provide access
-instructions and actual local evidence. Video is excluded as requested. Check
-whether your instructor approves that exception before submission.
+Your final submission steps:
+
+- [ ] Read LEARN_THE_PROJECT.md and understand the code and results.
+- [ ] Open the DOCX in Word and review all pages.
+- [ ] Submit the DOCX and repository URL according to the course portal.
+- [ ] Follow the course's rules for originality and disclosure of assistance.
+
+The cluster was a temporary GitHub-runner demonstration and was deleted after
+evidence capture. Repeat via the manual Actions workflow or local README steps.
+Video recording is excluded at your request; confirm the course accepts that exception.

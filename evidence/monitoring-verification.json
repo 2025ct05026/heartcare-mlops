@@ -1,0 +1,72 @@
+{
+  "http_status_counts": {
+    "200": 80,
+    "422": 20
+  },
+  "targets": {
+    "status": "success",
+    "data": {
+      "activeTargets": [
+        {
+          "discoveredLabels": {
+            "__address__": "api:8000",
+            "__metrics_path__": "/metrics",
+            "__scheme__": "http",
+            "__scrape_interval__": "5s",
+            "__scrape_timeout__": "5s",
+            "job": "heartcare"
+          },
+          "labels": {
+            "instance": "api:8000",
+            "job": "heartcare"
+          },
+          "scrapePool": "heartcare",
+          "scrapeUrl": "http://api:8000/metrics",
+          "globalUrl": "http://api:8000/metrics",
+          "lastError": "",
+          "lastScrape": "2026-10-19T15:08:38.370533737Z",
+          "lastScrapeDuration": 0.00233992,
+          "health": "up",
+          "scrapeInterval": "5s",
+          "scrapeTimeout": "5s"
+        }
+      ],
+      "droppedTargets": [],
+      "droppedTargetCounts": {
+        "heartcare": 0
+      }
+    }
+  },
+  "predictions": {
+    "status": "success",
+    "data": {
+      "resultType": "vector",
+      "result": [
+        {
+          "metric": {
+            "__name__": "heartcare_predictions_total",
+            "instance": "api:8000",
+            "job": "heartcare",
+            "prediction": "1"
+          },
+          "value": [
+            1792422521.138,
+            "40"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "heartcare_predictions_total",
+            "instance": "api:8000",
+            "job": "heartcare",
+            "prediction": "0"
+          },
+          "value": [
+            1792422521.138,
+            "40"
+          ]
+        }
+      ]
+    }
+  }
+}

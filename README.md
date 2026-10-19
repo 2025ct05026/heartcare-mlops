@@ -15,14 +15,26 @@ https://github.com/2025ct05026/heartcare-mlops/actions/runs/39261525975
 
 Actual workflow metadata and build/test logs are saved in `evidence/github-actions.json`,
 `evidence/github-docker-build.txt`, `evidence/github-container-smoke.txt` and
-`evidence/github-tests.txt`. The local Kubernetes and Grafana steps below still
-need Docker Desktop execution and screenshots.
+`evidence/github-tests.txt`.
+
+A second successful workflow ran Minikube with two replicas, verified predictions
+through NGINX ingress, and captured Prometheus UP and the Grafana dashboard:
+https://github.com/2025ct05026/heartcare-mlops/actions/runs/39274915091
+
+This was a disposable Linux-runner demo; the cluster was removed afterward.
+Screenshots and raw evidence are included. You do not need Docker Desktop to read
+the report or inspect the evidence. To repeat the deployment on your Windows
+computer, install Docker Desktop and follow the commands below. To repeat on
+GitHub, open Actions > Kubernetes and monitoring demonstration > Run workflow.
+The CI-only Compose override permits anonymous Viewer access to fresh demo
+metrics on loopback; local Compose uses normal admin login.
 
 ## Start here on Windows
 
-Install Python 3.12 (recommended), Git and Docker Desktop. Enable Docker Desktop's
+Install Python 3.12 and Git for the Python project. Docker Desktop is needed
+only to repeat the container and local deployment steps. For those steps, enable
 Linux containers and wait until its engine is running. Minikube and kubectl are
-needed only for the deployment section. Run commands from this project folder.
+needed only for local Kubernetes deployment. Run commands from this project folder.
 The included dataset and fitted model allow an offline API run after installation.
 
 ```powershell
@@ -192,7 +204,8 @@ using `kubectl delete -f k8s/api.yaml` when finished.
 
 ## GitHub and CI
 
-Create an empty GitHub repository in your own account. From this project folder:
+The project is already published at the repository above. For a new copy, create
+an empty repository and use its URL in the following initial setup commands:
 
 ```powershell
 git init
@@ -210,17 +223,15 @@ job. Artifact and container-log collection runs even on failure. Download the
 experiment evidence artifact and capture the green workflow summary. CI exports
 a verified Docker image tar, which can be loaded using `docker load -i
 heartcare-image.tar`; tag the loaded SHA image as `heartcare:1.0` before Minikube.
-Deployment is a deliberate local step, since GitHub's hosted runner cannot reach
-your laptop's Minikube cluster. No automatic production deployment is claimed.
+The separate manual deployment-demo workflow creates its own temporary Minikube
+cluster. It does not deploy into your laptop or provide persistent production hosting.
 
 ## Submission finishing steps
 
-The ten-page Word report is the written submission. The code ZIP is supporting
-material for upload to your own GitHub repository. Read `SUBMISSION_CHECKLIST.md`.
-The DOCX includes https://github.com/2025ct05026/heartcare-mlops. Before handing in, add your own
-successful CI, Docker, Kubernetes and Grafana screenshots in the indicated areas.
-Keep the report at ten pages by replacing the evidence instructions rather than
-appending pages. Verify all ten pages in Word after editing.
+The ten-page Word report is the written submission. The repository and code ZIP
+contain the implementation and real execution evidence. CI, Docker, two-replica
+Kubernetes ingress and the Compose monitoring stack have been verified. Read
+`SUBMISSION_CHECKLIST.md` and confirm the course portal submission requirements.
 
 The assignment asks for independent understanding. Study the project, rerun it,
 personalize your experiment choices, and follow your course's AI assistance policy.

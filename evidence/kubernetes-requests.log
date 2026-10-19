@@ -1,0 +1,16 @@
+[pod/heartcare-6bdd49796f-9mmqv/api] {"route": "/predict", "method": "POST", "status": 422, "duration_ms": 0.55}
+[pod/heartcare-6bdd49796f-9mmqv/api] INFO:     10.244.0.5:52752 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+[pod/heartcare-6bdd49796f-9mmqv/api] {"route": "/metrics", "method": "GET", "status": 200, "duration_ms": 0.85}
+[pod/heartcare-6bdd49796f-9mmqv/api] INFO:     10.244.0.5:52744 - "GET /metrics HTTP/1.1" 200 OK
+[pod/heartcare-6bdd49796f-9mmqv/api] {"route": "unmatched", "method": "GET", "status": 200, "duration_ms": 0.26}
+[pod/heartcare-6bdd49796f-9mmqv/api] INFO:     10.244.0.5:52744 - "GET /docs HTTP/1.1" 200 OK
+[pod/heartcare-6bdd49796f-9mmqv/api] {"route": "unmatched", "method": "GET", "status": 200, "duration_ms": 11.69}
+[pod/heartcare-6bdd49796f-9mmqv/api] INFO:     10.244.0.5:52744 - "GET /openapi.json HTTP/1.1" 200 OK
+[pod/heartcare-6bdd49796f-9mmqv/api] {"route": "/predict", "method": "POST", "status": 200, "duration_ms": 6.46}
+[pod/heartcare-6bdd49796f-9mmqv/api] INFO:     10.244.0.5:52744 - "POST /predict HTTP/1.1" 200 OK
+[pod/heartcare-6bdd49796f-td2h2/api] INFO:     Started server process [1]
+[pod/heartcare-6bdd49796f-td2h2/api] INFO:     Waiting for application startup.
+[pod/heartcare-6bdd49796f-td2h2/api] INFO:     Application startup complete.
+[pod/heartcare-6bdd49796f-td2h2/api] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[pod/heartcare-6bdd49796f-td2h2/api] {"route": "/health", "method": "GET", "status": 200, "duration_ms": 0.82}
+[pod/heartcare-6bdd49796f-td2h2/api] INFO:     10.244.0.1:59854 - "GET /health HTTP/1.1" 200 OK

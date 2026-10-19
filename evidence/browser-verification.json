@@ -1,0 +1,11 @@
+{
+  "environment": "Disposable GitHub Actions Linux runner; cluster deleted after job",
+  "run_id": "39274915091",
+  "ingress_url": "http://192.168.49.2",
+  "ingress_response": {
+    "prediction": 0,
+    "probability": 0.16553481726241553,
+    "confidence": 0.8344651827375844,
+    "model_version": "81f450abefeb"
+  }
+}

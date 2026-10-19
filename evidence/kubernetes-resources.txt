@@ -1,0 +1,10 @@
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+pod/heartcare-6bdd49796f-9mmqv   1/1     Running   0          12s   10.244.0.7   minikube   <none>           <none>
+pod/heartcare-6bdd49796f-td2h2   1/1     Running   0          12s   10.244.0.6   minikube   <none>           <none>
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+service/heartcare    ClusterIP   10.98.217.145   <none>        8000/TCP   12s   app=heartcare
+service/kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP    90s   <none>
+
+NAME                                  CLASS   HOSTS   ADDRESS        PORTS   AGE
+ingress.networking.k8s.io/heartcare   nginx   *       192.168.49.2   80      12s

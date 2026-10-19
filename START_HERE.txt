@@ -10,5 +10,7 @@ Student ID: 2025ct05026@wilp.bits-pilani.ac.in
 
 Verified: six MLflow experiments, lint, 19 tests and a real HTTP API smoke test.
 Repository: https://github.com/2025ct05026/heartcare-mlops
-Remaining: successful CI, Docker build/run, Kubernetes and monitoring screenshots.
+Verified on GitHub: CI and Docker build/run passed.
+Workflow: https://github.com/2025ct05026/heartcare-mlops/actions/runs/39261525975
+Verified: temporary Minikube ingress deployment, Prometheus UP and Grafana dashboard. Real screenshots and raw logs are included. The demo cluster was deleted after capture.
 Video recording is excluded as requested.

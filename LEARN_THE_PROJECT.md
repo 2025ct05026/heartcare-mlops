@@ -34,7 +34,9 @@ and files. Six candidates produce six runs per training invocation.
 Failures block the successful delivery path. The workflow preserves evidence.
 
 **What is delivery here?** CI packages and smoke-tests the image and exports it.
-Deploying to local Minikube is a documented manual step after checks pass.
+The separate manual Actions workflow creates a temporary Minikube cluster,
+verifies ingress and monitoring, captures screenshots and deletes the demo.
+The README also explains how to repeat deployment on your own computer.
 
 **Why Docker?** It packages Python, dependencies and the saved model into one
 repeatable service image. A healthy container is evidence that it runs in isolation.
@@ -49,7 +51,7 @@ the service works. They do not show model accuracy unless outcomes are collected
 model/data version promotion, authentication/TLS, drift alerts and a locked
 container digest. The small historical dataset limits generalization.
 
-## Personalize before submitting
+## Optional learning experiment
 
 After understanding the baseline, try one justified hyperparameter change in
 train.py and rerun training and tests. Explain whether it improved CV results.
