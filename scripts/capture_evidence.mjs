@@ -8,7 +8,12 @@ const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1200, height: 850 }, deviceScaleFactor: 1 });
 const browserErrors = [];
 page.on('pageerror', error => browserErrors.push(String(error)));
+page.on('console', message => { if (message.type() === 'error') browserErrors.push(message.text()); });
+page.on('requestfailed', request => browserErrors.push(`${request.url()} ${request.failure()?.errorText}`));
+page.on('response', response => { if (response.status() >= 400) browserErrors.push(`${response.status()} ${response.url()}`); });
+const mode = process.argv[2] || 'all';
 try {
+ if (mode !== 'monitoring') {
   const base = process.env.API_URL;
   assert(base);
   await page.goto(`${base}/docs`);
@@ -23,7 +28,13 @@ try {
   const result = await response.json();
   await operation.locator('.responses-wrapper').scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'screenshots/ingress-prediction.png' });
+  await writeFile('evidence/browser-verification.json', JSON.stringify({
+    environment: 'Disposable GitHub Actions Linux runner; cluster deleted after job',
+    run_id: process.env.GITHUB_RUN_ID, ingress_url: base, ingress_response: result
+  }, null, 2));
+ }
 
+ if (mode !== 'ingress') {
   // Capture the native browser display of the real target API response. This
   // verifies scraping independently of Prometheus's optional JavaScript UI.
   const targetResponse = await page.goto('http://127.0.0.1:9090/api/v1/targets');
@@ -35,15 +46,13 @@ try {
   await page.getByText('Predictions since process start', { exact: true }).waitFor({ timeout: 60000 });
   await page.waitForTimeout(10000);
   await page.screenshot({ path: 'screenshots/grafana.png', fullPage: true });
+ }
 
+ if (mode !== 'monitoring') {
   await page.goto('https://github.com/2025ct05026/heartcare-mlops/actions/runs/39261525975');
   await page.getByText('Success', { exact: true }).first().waitFor({ timeout: 30000 });
   await page.screenshot({ path: 'screenshots/github-actions.png' });
-  await writeFile('evidence/browser-verification.json', JSON.stringify({
-    environment: 'Disposable GitHub Actions Linux runner; cluster deleted after job',
-    run_id: process.env.GITHUB_RUN_ID, ingress_url: base, ingress_response: result,
-    screenshots: ['ingress-prediction.png', 'prometheus.png', 'grafana.png', 'github-actions.png']
-  }, null, 2));
+ }
 } catch (error) {
   await page.screenshot({ path: 'screenshots/browser-failure.png', fullPage: true });
   await writeFile('evidence/browser-failure.txt', `${page.url()}\n${error}\n${browserErrors.join('\n')}\n${await page.locator('body').innerText()}`);

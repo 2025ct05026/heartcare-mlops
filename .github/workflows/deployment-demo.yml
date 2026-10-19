@@ -20,6 +20,16 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Build the submitted model image
         run: docker build -t heartcare:1.0 .
+      - name: Start monitoring and generate measured traffic
+        run: |
+          mkdir -p evidence screenshots
+          export GRAFANA_PASSWORD="$(openssl rand -hex 20)"
+          echo "::add-mask::$GRAFANA_PASSWORD"
+          echo "GRAFANA_PASSWORD=$GRAFANA_PASSWORD" >> "$GITHUB_ENV"
+          docker compose -f monitoring/compose.yaml -f monitoring/compose.ci.yaml up --build -d
+          python -m scripts.monitoring_demo
+      - name: Capture monitoring browser evidence
+        run: node scripts/capture_evidence.mjs monitoring
       - name: Install and start Minikube
         run: |
           curl -fsSLo minikube-linux-amd64 https://storage.googleapis.com/minikube/releases/v1.37.0/minikube-linux-amd64
@@ -44,15 +54,8 @@ jobs:
             sleep 2
           done
           python -m scripts.smoke | tee evidence/ingress-smoke.txt
-      - name: Start monitoring and generate measured traffic
-        run: |
-          export GRAFANA_PASSWORD="$(openssl rand -hex 20)"
-          echo "::add-mask::$GRAFANA_PASSWORD"
-          echo "GRAFANA_PASSWORD=$GRAFANA_PASSWORD" >> "$GITHUB_ENV"
-          docker compose -f monitoring/compose.yaml -f monitoring/compose.ci.yaml up --build -d
-          python -m scripts.monitoring_demo
-      - name: Capture real browser evidence
-        run: node scripts/capture_evidence.mjs
+      - name: Capture ingress and CI browser evidence
+        run: node scripts/capture_evidence.mjs ingress
       - name: Collect diagnostic logs
         if: always()
         run: |
