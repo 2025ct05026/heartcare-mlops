@@ -1,0 +1,14 @@
+HEARTCARE MLOPS ASSIGNMENT
+
+Author: Lokesh Verma
+Student ID: 2025ct05026@wilp.bits-pilani.ac.in
+
+1. Open reports/Assignment_Report.docx for the ten-page written report.
+2. Read README.md for setup and deployment commands.
+3. Read LEARN_THE_PROJECT.md to understand the project.
+4. Follow SUBMISSION_CHECKLIST.md before submitting.
+
+Verified: six MLflow experiments, lint, 19 tests and a real HTTP API smoke test.
+Repository: https://github.com/2025ct05026/heartcare-mlops
+Remaining: successful CI, Docker build/run, Kubernetes and monitoring screenshots.
+Video recording is excluded as requested.

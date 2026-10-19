@@ -1,0 +1,33 @@
+{
+  "model_name": "logistic_2",
+  "run_id": "a33b47e0c853415db61b139c973cea1f",
+  "threshold": 0.5,
+  "features": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "dataset_sha256": "22e12756ee58fc33015f0439de96acca9244c426374ee3086f87066d7c83eed7",
+  "model_sha256": "81f450abefeb83cda5d5749434b5cc13f97fecc634cec2420963571b87706f3d",
+  "python": "3.12.14",
+  "sklearn": "1.7.2",
+  "train_rows": 242,
+  "test_rows": 61,
+  "seed": 42,
+  "holdout_metrics": {
+    "accuracy": 0.8852459016393442,
+    "precision": 0.8387096774193549,
+    "recall": 0.9285714285714286,
+    "roc_auc": 0.9664502164502166
+  }
+}

@@ -1,0 +1,59 @@
+name: HeartCare CI and container delivery
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned dependencies
+        run: pip install -r requirements.txt
+      - name: Lint
+        run: ruff check heartcare test scripts
+      - name: Prepare data and EDA
+        run: |
+          python -m heartcare.data
+          python -m heartcare.eda
+      - name: Train all experiments and select model
+        run: python -m heartcare.train
+      - name: Unit and API tests
+        run: pytest -q --junitxml=reports/pytest.xml
+      - name: Build isolated image
+        run: docker build -t heartcare:${{ github.sha }} .
+      - name: Container smoke test
+        run: |
+          docker run -d --name heartcare -p 8000:8000 heartcare:${{ github.sha }}
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/health; then break; fi
+            sleep 2
+          done
+          python -m scripts.smoke
+      - name: Export verified image
+        run: docker save heartcare:${{ github.sha }} -o heartcare-image.tar
+      - name: Save image for local deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: heartcare-image
+          path: heartcare-image.tar
+          retention-days: 3
+      - name: Collect container logs
+        if: always()
+        run: docker logs heartcare > reports/container.log 2>&1 || true
+      - name: Upload results even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-and-test-evidence
+          path: |
+            reports/
+            models/
+            mlflow.db
+            mlartifacts/
+          retention-days: 7

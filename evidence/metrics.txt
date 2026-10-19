@@ -1,0 +1,72 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 529.0
+python_gc_objects_collected_total{generation="1"} 95.0
+python_gc_objects_collected_total{generation="2"} 20.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 330.0
+python_gc_collections_total{generation="1"} 30.0
+python_gc_collections_total{generation="2"} 2.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="14",version="3.12.14"} 1.0
+# HELP heartcare_requests_total HTTP responses
+# TYPE heartcare_requests_total counter
+heartcare_requests_total{method="GET",route="/health",status="200"} 1.0
+heartcare_requests_total{method="POST",route="/predict",status="200"} 1.0
+# HELP heartcare_requests_created HTTP responses
+# TYPE heartcare_requests_created gauge
+heartcare_requests_created{method="GET",route="/health",status="200"} 1.7923974429093165e+09
+heartcare_requests_created{method="POST",route="/predict",status="200"} 1.7923974429636247e+09
+# HELP heartcare_request_seconds HTTP response latency
+# TYPE heartcare_request_seconds histogram
+heartcare_request_seconds_bucket{le="0.005",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.01",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.025",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.05",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.075",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.1",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.25",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.5",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="0.75",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="1.0",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="2.5",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="5.0",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="7.5",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="10.0",route="/health"} 1.0
+heartcare_request_seconds_bucket{le="+Inf",route="/health"} 1.0
+heartcare_request_seconds_count{route="/health"} 1.0
+heartcare_request_seconds_sum{route="/health"} 0.004997599986381829
+heartcare_request_seconds_bucket{le="0.005",route="/predict"} 0.0
+heartcare_request_seconds_bucket{le="0.01",route="/predict"} 0.0
+heartcare_request_seconds_bucket{le="0.025",route="/predict"} 0.0
+heartcare_request_seconds_bucket{le="0.05",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="0.075",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="0.1",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="0.25",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="0.5",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="0.75",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="1.0",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="2.5",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="5.0",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="7.5",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="10.0",route="/predict"} 1.0
+heartcare_request_seconds_bucket{le="+Inf",route="/predict"} 1.0
+heartcare_request_seconds_count{route="/predict"} 1.0
+heartcare_request_seconds_sum{route="/predict"} 0.03794209996704012
+# HELP heartcare_request_seconds_created HTTP response latency
+# TYPE heartcare_request_seconds_created gauge
+heartcare_request_seconds_created{route="/health"} 1.7923974429093165e+09
+heartcare_request_seconds_created{route="/predict"} 1.7923974429636247e+09
+# HELP heartcare_predictions_total Predictions by class
+# TYPE heartcare_predictions_total counter
+heartcare_predictions_total{prediction="0"} 1.0
+# HELP heartcare_predictions_created Predictions by class
+# TYPE heartcare_predictions_created gauge
+heartcare_predictions_created{prediction="0"} 1.7923974429571786e+09

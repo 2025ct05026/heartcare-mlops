@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+mlflow.db*
+mlartifacts/
+*.log
+reports/fold_scores.csv
+
+mlruns/
+MANIFEST_SHA256.json

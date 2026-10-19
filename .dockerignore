@@ -1,0 +1,7 @@
+*
+!requirements.txt
+!heartcare/
+!heartcare/*.py
+!models/
+!models/model.joblib
+!models/metadata.json
