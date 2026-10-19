@@ -4,6 +4,20 @@ A small educational classifier for the presence of heart disease in the original
 UCI Cleveland dataset. This is an assignment demonstration, not a diagnostic tool.
 Author: Lokesh Verma. Student ID: 2025ct05026@wilp.bits-pilani.ac.in.
 
+## Verified GitHub execution
+
+Repository: https://github.com/2025ct05026/heartcare-mlops
+
+The first GitHub Actions run passed dependency installation, lint, EDA, all six
+MLflow experiments, all 19 tests, Docker construction and a real HTTP smoke test
+against the isolated container:
+https://github.com/2025ct05026/heartcare-mlops/actions/runs/39261525975
+
+Actual workflow metadata and build/test logs are saved in `evidence/github-actions.json`,
+`evidence/github-docker-build.txt`, `evidence/github-container-smoke.txt` and
+`evidence/github-tests.txt`. The local Kubernetes and Grafana steps below still
+need Docker Desktop execution and screenshots.
+
 ## Start here on Windows
 
 Install Python 3.12 (recommended), Git and Docker Desktop. Enable Docker Desktop's

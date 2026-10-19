@@ -1,0 +1,20 @@
+﻿2026-10-19T13:36:56.9180090Z ##[group]Run pytest -q --junitxml=reports/pytest.xml
+2026-10-19T13:36:56.9180509Z [36;1mpytest -q --junitxml=reports/pytest.xml[0m
+2026-10-19T13:36:56.9245527Z shell: /usr/bin/bash -e {0}
+2026-10-19T13:36:56.9245786Z env:
+2026-10-19T13:36:56.9246234Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:36:56.9246669Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-19T13:36:56.9247100Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:36:56.9247488Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:36:56.9247864Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:36:56.9248237Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-19T13:36:56.9248549Z ##[endgroup]
+2026-10-19T13:36:59.7524996Z ...................                                                      [100%]
+2026-10-19T13:36:59.7525962Z =============================== warnings summary ===============================
+2026-10-19T13:36:59.7527340Z ../../../../../opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:51
+2026-10-19T13:36:59.7529652Z   /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:51: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+2026-10-19T13:36:59.7531905Z     _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+2026-10-19T13:36:59.7532707Z 
+2026-10-19T13:36:59.7533459Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-10-19T13:36:59.7534779Z - generated xml file: /home/runner/work/heartcare-mlops/heartcare-mlops/reports/pytest.xml -
+2026-10-19T13:36:59.7535531Z 19 passed, 1 warning in 2.14s

@@ -6,8 +6,9 @@ must be produced by running this project in your environment.
 - [ ] Read the code and explain each component without relying on the report.
 - [ ] Follow README setup, EDA, training and test commands.
 - [ ] Review the measured results and compare your fresh run if versions differ.
-- [ ] Push the files to https://github.com/2025ct05026/heartcare-mlops and verify the report URL.
-- [ ] Confirm GitHub Actions succeeds and capture its summary and test artifacts.
+- [x] Publish the files to https://github.com/2025ct05026/heartcare-mlops and include the report URL.
+- [x] Pass GitHub Actions, including all 19 tests, Docker build and container HTTP smoke.
+- [ ] Capture the successful workflow summary and download its test artifacts.
 - [ ] Build and run the Docker image; capture smoke output and health status.
 - [ ] Deploy two API replicas in Minikube and capture pods, ingress and prediction.
 - [ ] Start monitoring Compose stack; capture Prometheus UP and Grafana traffic panels.

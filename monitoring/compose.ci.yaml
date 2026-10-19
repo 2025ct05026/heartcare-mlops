@@ -1,0 +1,6 @@
+# A disposable, loopback-only CI demo. Local installations retain normal login.
+services:
+  grafana:
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer

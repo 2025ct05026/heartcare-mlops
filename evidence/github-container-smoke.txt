@@ -1,0 +1,25 @@
+﻿2026-10-19T13:37:44.5824499Z ##[group]Run docker run -d --name heartcare -p 8000:8000 heartcare:7fdaa8363c2846dc29407b3dd659e9eaab2303fb
+2026-10-19T13:37:44.5825281Z [36;1mdocker run -d --name heartcare -p 8000:8000 heartcare:7fdaa8363c2846dc29407b3dd659e9eaab2303fb[0m
+2026-10-19T13:37:44.5825764Z [36;1mfor i in $(seq 1 30); do[0m
+2026-10-19T13:37:44.5826109Z [36;1m  if curl -fsS http://127.0.0.1:8000/health; then break; fi[0m
+2026-10-19T13:37:44.5826465Z [36;1m  sleep 2[0m
+2026-10-19T13:37:44.5826670Z [36;1mdone[0m
+2026-10-19T13:37:44.5826882Z [36;1mpython -m scripts.smoke[0m
+2026-10-19T13:37:44.5890046Z shell: /usr/bin/bash -e {0}
+2026-10-19T13:37:44.5890307Z env:
+2026-10-19T13:37:44.5890573Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:37:44.5891015Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-19T13:37:44.5891444Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:37:44.5891831Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:37:44.5892272Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-19T13:37:44.5892680Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-19T13:37:44.5893002Z ##[endgroup]
+2026-10-19T13:37:44.6397731Z 998fb88d210f949739961c612bb8140c6b2c1e59464d5aeff57ffa0110f85328
+2026-10-19T13:37:45.3596135Z curl: (56) Recv failure: Connection reset by peer
+2026-10-19T13:37:47.8027848Z {"status":"ok","model_version":"5bda878677b1"}{
+2026-10-19T13:37:47.8028457Z   "prediction": 0,
+2026-10-19T13:37:47.8028704Z   "probability": 0.16553481726226757,
+2026-10-19T13:37:47.8028980Z   "confidence": 0.8344651827377324,
+2026-10-19T13:37:47.8029256Z   "model_version": "5bda878677b1"
+2026-10-19T13:37:47.8029504Z }
+2026-10-19T13:37:47.8029745Z PASS: health, prediction, invalid input and metrics
