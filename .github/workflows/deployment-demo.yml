@@ -1,6 +1,11 @@
 name: Kubernetes and monitoring demonstration
 on:
   workflow_dispatch:
+    inputs:
+      record_video:
+        description: Record a silent browser walkthrough of the running pipeline
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -18,6 +23,17 @@ jobs:
           pip install -r requirements.txt
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Prepare tracking for the optional recording
+        if: inputs.record_video
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg xvfb xdotool
+          python -m heartcare.train
+          nohup python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5000 > /tmp/heartcare-mlflow-video.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:5000; then break; fi
+            sleep 2
+          done
       - name: Build the submitted model image
         run: docker build -t heartcare:1.0 .
       - name: Start monitoring and generate measured traffic
@@ -56,6 +72,16 @@ jobs:
           python -m scripts.smoke | tee evidence/ingress-smoke.txt
       - name: Capture ingress and CI browser evidence
         run: node scripts/capture_evidence.mjs ingress
+      - name: Record the real browser workflow without audio
+        if: inputs.record_video
+        run: xvfb-run -a --server-args="-screen 0 1366x768x24" node scripts/record_pipeline.mjs
+      - name: Save the silent MP4 recording
+        if: inputs.record_video && success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-video
+          path: video/HeartCare_Pipeline_Demo.mp4
+          retention-days: 7
       - name: Collect diagnostic logs
         if: always()
         run: |
