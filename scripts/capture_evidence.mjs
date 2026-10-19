@@ -6,6 +6,8 @@ import assert from 'node:assert/strict';
 await mkdir('screenshots', { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1200, height: 850 }, deviceScaleFactor: 1 });
+const browserErrors = [];
+page.on('pageerror', error => browserErrors.push(String(error)));
 try {
   const base = process.env.API_URL;
   assert(base);
@@ -22,9 +24,12 @@ try {
   await operation.locator('.responses-wrapper').scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'screenshots/ingress-prediction.png' });
 
-  await page.goto('http://127.0.0.1:9090/targets');
-  await page.getByText(/^up$/i).first().waitFor({ timeout: 30000 });
-  await page.screenshot({ path: 'screenshots/prometheus.png' });
+  // Capture the native browser display of the real target API response. This
+  // verifies scraping independently of Prometheus's optional JavaScript UI.
+  const targetResponse = await page.goto('http://127.0.0.1:9090/api/v1/targets');
+  const targetStatus = await targetResponse.json();
+  assert(targetStatus.data.activeTargets.some(target => target.health === 'up'));
+  await page.locator('pre').screenshot({ path: 'screenshots/prometheus.png' });
 
   await page.goto('http://127.0.0.1:3000/d/heartcare-service/heartcare-service-monitoring?orgId=1&from=now-10m&to=now');
   await page.getByText('Predictions since process start', { exact: true }).waitFor({ timeout: 60000 });
@@ -41,7 +46,7 @@ try {
   }, null, 2));
 } catch (error) {
   await page.screenshot({ path: 'screenshots/browser-failure.png', fullPage: true });
-  await writeFile('evidence/browser-failure.txt', `${page.url()}\n${error}\n${await page.locator('body').innerText()}`);
+  await writeFile('evidence/browser-failure.txt', `${page.url()}\n${error}\n${browserErrors.join('\n')}\n${await page.locator('body').innerText()}`);
   throw error;
 } finally {
   await browser.close();
