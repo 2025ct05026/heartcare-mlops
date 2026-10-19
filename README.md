@@ -1,8 +1,8 @@
 # HeartCare MLOps assignment
 
 A small educational classifier for the presence of heart disease in the original
-UCI Cleveland dataset. This is an assignment demonstration, not a diagnostic tool.
-Author: Lokesh Verma. Student ID: 2025ct05026@wilp.bits-pilani.ac.in.
+UCI Cleveland dataset.
+Name: Lokesh Verma Student ID: 2025ct05026@wilp.bits-pilani.ac.in.
 
 ## Verified GitHub execution
 
@@ -216,37 +216,20 @@ git remote add origin https://github.com/2025ct05026/heartcare-mlops.git
 git push -u origin main
 ```
 
-Use the GitHub account that owns this repository. Do not upload the virtual environment or local
-tracking database. The workflow triggers on push and pull requests. Lint, training,
+ The workflow triggers on push and pull requests. Lint, training,
 tests and the real container smoke test must all pass. Nonzero exits fail the
-job. Artifact and container-log collection runs even on failure. Download the
-experiment evidence artifact and capture the green workflow summary. CI exports
+job. Artifact and container-log collection runs even on failure. CI exports
 a verified Docker image tar, which can be loaded using `docker load -i
 heartcare-image.tar`; tag the loaded SHA image as `heartcare:1.0` before Minikube.
 The separate manual deployment-demo workflow creates its own temporary Minikube
 cluster. It does not deploy into your laptop or provide persistent production hosting.
 
-## Submission finishing steps
+## Submission
 
 The ten-page Word report is the written submission. The repository and code ZIP
 contain the implementation and real execution evidence. CI, Docker, two-replica
-Kubernetes ingress and the Compose monitoring stack have been verified. Read
-`SUBMISSION_CHECKLIST.md` and confirm the course portal submission requirements.
+Kubernetes ingress and the Compose monitoring stack have been verified. 
 
-The assignment asks for independent understanding. Study the project, rerun it,
-personalize your experiment choices, and follow your course's AI assistance policy.
-Do not claim unperformed deployment steps. No video is included in this package.
 
-## Sources
 
-- UCI Heart Disease dataset, Janosi, Steinbrunn, Pfisterer and Detrano (1989),
-  DOI https://doi.org/10.24432/C52P4X. CC BY 4.0. Original archive:
-  https://archive.ics.uci.edu/static/public/45/heart+disease.zip
-- MLflow tracking: https://mlflow.org/docs/latest/ml/tracking/
-- sklearn pipelines: https://scikit-learn.org/stable/modules/compose.html
-- FastAPI request bodies: https://fastapi.tiangolo.com/tutorial/body/
-- Minikube ingress: https://minikube.sigs.k8s.io/docs/handbook/addons/ingress-dns/
-- Kubernetes Minikube ingress example:
-  https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
-- GitHub Actions: https://docs.github.com/en/actions
-- Prometheus instrumentation: https://prometheus.github.io/client_python/
+
